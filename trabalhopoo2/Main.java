@@ -8,7 +8,9 @@ public class Main {
 		Tabuleiro tabuleiroSingleton = Tabuleiro.getInstance();
 		tabuleiroSingleton.imprimirTabuleiro();
 
+
 		Navio submarino = Submarino.constroiNavio("submarino");
+
 
 		Navio submarino1 = Submarino.constroiNavio("submarino");
 		submarino1.posicionaNavio(tabuleiroSingleton);
@@ -73,19 +75,6 @@ public class Main {
 			System.out.println("Total de torpedos: " + chances);
 			tabuleiroSingleton.imprimirTabuleiro();
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	}
 }

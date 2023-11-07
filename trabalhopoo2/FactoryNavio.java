@@ -1,7 +1,12 @@
 package trabalhopoo2;
 
-public interface FactoryNavio {
+public class FactoryNavio {
 
-    public Navio constroiNavio(String modelo);
+    public Submarino constroiNavio(String modelo) {
+        if (modelo.equals("submarino")) {
+            return new Submarino();
+        }
+        return null;
+    }
 
 }
