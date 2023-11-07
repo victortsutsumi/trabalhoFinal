@@ -29,13 +29,12 @@ public class Submarino implements Navio{
     }
 
 
-    public boolean executarAtaque(Tabuleiro tabuleiro) {
+    public void executarAtaque(Tabuleiro tabuleiro) {
         if (ataqueStrategy != null) {
             ataqueStrategy.executarAtaque(tabuleiro);
         } else {
             System.out.println("Nenhuma estratégia de ataque definida.");
         }
-        return false;
     }
 
 }

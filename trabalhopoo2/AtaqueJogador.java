@@ -17,7 +17,7 @@ public class AtaqueJogador implements AtaqueStrategy{
     }
 
     @Override
-    public boolean executarAtaque(Tabuleiro tabuleiro) {
+    public void executarAtaque(Tabuleiro tabuleiro) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Digite a posição da linha de ataque (1-5): ");
@@ -35,11 +35,9 @@ public class AtaqueJogador implements AtaqueStrategy{
         boolean acertou;
 
         acertou = tabuleiro.verificarChute(tabuleiro, linha, coluna);
-        System.out.println("VerificarChute: " + acertou);
         notificarObservadores(acertou);
         tabuleiro.atualizarTabuleiro(linha, coluna, acertou, tabuleiro);
 
-        return acertou;
     }
 
     private void notificarObservadores(boolean acertou

@@ -16,7 +16,7 @@ public class AtaqueAleatorio implements AtaqueStrategy{
         observadores.remove(observador);
     }
     @Override
-    public boolean executarAtaque(Tabuleiro tabuleiro) {
+    public void executarAtaque(Tabuleiro tabuleiro) {
 
         System.out.println("Executando ataque aleatorio: posição  torpedo disparado!");
 
@@ -30,8 +30,6 @@ public class AtaqueAleatorio implements AtaqueStrategy{
         acertou = tabuleiro.verificarChute(tabuleiro, linha, coluna);
         notificarObservadores(acertou);
         tabuleiro.atualizarTabuleiro(linha, coluna, acertou, tabuleiro);
-
-        return acertou;
     }
 
     private void notificarObservadores(boolean acertou) {

@@ -1,6 +1,7 @@
 package trabalhopoo2;
 
 public class Tabuleiro implements Observador{
+	public static int subs = 3;
 	private static Tabuleiro instance;
     private int[][] tabuleiro = new int[5][5];
 
@@ -57,12 +58,29 @@ public class Tabuleiro implements Observador{
 
 	public boolean verificarChute(Tabuleiro tabuleiro, int linha, int coluna){
 		if(tabuleiro.getTabuleiro()[linha][coluna] == 3){
+			tabuleiro.atualizaVitoria(tabuleiro);
 			return true;
 		}
+		tabuleiro.exibirTotalSubs();
 		return false;
 	}
 
+	public void exibirTotalSubs(){
+		System.out.println("Submarinos restantes: " + subs);
+	}
 
+	public void atualizaVitoria(Tabuleiro tabuleiro){
+		subs--;
+		tabuleiro.exibirTotalSubs();
+		tabuleiro.notificaVitoria();
+	}
+
+	public int notificaVitoria(){
+		if(subs == 0){
+			return 1;
+		}
+		return 0;
+	}
 
 	public void notificarAcerto(boolean acertou) {
 		if(acertou){

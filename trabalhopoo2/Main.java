@@ -32,9 +32,11 @@ public class Main {
 
 		while(chances > 0){
 
-			if(submarinos == 0){
+			if(tabuleiroSingleton.notificaVitoria() == 1){
 				System.out.println("Parabéns, você afundou todos os submarinos!");
+				break;
 			}
+
 
 			System.out.println("Escolha sua estratégia:");
 			System.out.println("1 - Digitar posição");
@@ -48,38 +50,27 @@ public class Main {
 					AtaqueStrategy ataqueJogador = new AtaqueJogador();
 					ataqueJogador.registrarObservador(tabuleiroSingleton);
 					submarino.setAtaqueStrategy(ataqueJogador);
-					verdade = submarino.executarAtaque(tabuleiroSingleton);
-					System.out.println("verdade: " + verdade);
-					if(!verdade)
-						submarinos--;
+					submarino.executarAtaque(tabuleiroSingleton);
 					break;
 				case 2:
 					AtaqueStrategy ataqueAleatorio = new AtaqueAleatorio();
 					ataqueAleatorio.registrarObservador(tabuleiroSingleton);
 					submarino.setAtaqueStrategy(ataqueAleatorio);
 					submarino.executarAtaque(tabuleiroSingleton);
-					verdade = submarino.executarAtaque(tabuleiroSingleton);
-
-					if(!verdade)
-						submarinos--;
 					break;
 				case 3:
 					AtaqueStrategy ataquePlanejado = new AtaquePlanejado();
 					ataquePlanejado.registrarObservador(tabuleiroSingleton);
 					submarino.setAtaqueStrategy(ataquePlanejado);
 					submarino.executarAtaque(tabuleiroSingleton);
-					verdade = submarino.executarAtaque(tabuleiroSingleton);
-					if(!verdade) {
-						submarinos--;
-					}
 					break;
 				case 0:
-					chances = 0;
+					chances = 1;
 					break;
 			}
+
 			chances--;
 			System.out.println("Total de torpedos: " + chances);
-			System.out.println("Total de submarinos: " + submarinos);
 			tabuleiroSingleton.imprimirTabuleiro();
 		}
 
@@ -93,41 +84,6 @@ public class Main {
 
 
 
-
-//		encouracado.executarAtaque(); // Executa a estratégia de ataque aleatório
-//
-//		AtaqueStrategy ataquePlanejado = new AtaquePlanejado();
-//		encouracado.setAtaqueStrategy(ataquePlanejado);
-//
-//		encouracado.executarAtaque();
-
-
-
-
-
-//		FactoryNavio factoryNavio = new MinhaFactoryNavio();// Substitua 'SuaFactoryNavio' pelo nome da sua implementação concreta.
-//
-//		ProxyEncouracado proxyEncouracado = new ProxyEncouracado(factoryNavio);
-//
-//		// Agora você pode usar o proxyEncouracado para atirar, mover, configurar estratégias de ataque, etc.
-//		proxyEncouracado.atirar();
-//		proxyEncouracado.mover();
-//
-//		AtaqueStrategy ataqueAleatorio1 = new AtaqueAleatorio();
-//		proxyEncouracado.setAtaqueStrategy(ataqueAleatorio);
-//
-//		proxyEncouracado.executarAtaque();
-//
-//
-//
-//		Encouracado encouracado2 = new Encouracado(); // Certifique-se de criar sua instância de Encouracado conforme necessário.
-//		Observador relatorioDanos = new RelatorioDanos();
-//
-//		// Registre o Observador no Sujeito Observado (Encouracado).
-//		encouracado.registrarObservador(relatorioDanos);
-//
-//		// Simule um evento (navio atingido).
-//		encouracado.notificarNavioAtingido();
 
 
 
