@@ -24,7 +24,7 @@
 
 Sistema básico baseado no jogo de batalha naval, onde o computador posiciona os submarinos no oceano, e cabe ao usuário, tentar adivinhar a posição ou usar a inteligência do computador para tentar abater todos os 3 submarinos.
 
-Este projeto tem como objetivo aprende e implementar padrões e princípios de projeto estudados na disciplina de Programação Orientada a Objetos 2. A escolha do sistema de batalha naval se dá pela familiaridade com jogo e a facilidade de implementação.
+Este projeto tem como objetivo aprender e implementar padrões e princípios de projeto estudados na disciplina de Programação Orientada a Objetos 2. A escolha do sistema de batalha naval se dá pela familiaridade com jogo e a facilidade de implementação.
 
 ## Padrões de projeto utilizados
 
