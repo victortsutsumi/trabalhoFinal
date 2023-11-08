@@ -2,10 +2,11 @@ package trabalhopoo2;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public static void main (String [] args) {
 
 		Tabuleiro tabuleiroSingleton = Tabuleiro.getInstance();
+		Memento mementoInicial = tabuleiroSingleton.criarMemento();
 		tabuleiroSingleton.imprimirTabuleiro();
 
 
@@ -29,8 +30,8 @@ public class Main {
 		System.out.println("Bem vindo a Batalha Naval!");
 		System.out.println("Você tem 5 chances de afundar os 3 submarinos espalhados no oceano!");
 		int chances = 5;
-		int submarinos = 3;
 		boolean verdade;
+
 
 		while(chances > 0){
 
@@ -44,6 +45,7 @@ public class Main {
 			System.out.println("1 - Digitar posição");
 			System.out.println("2 - Máquina calcula posição aleatória de ataque");
 			System.out.println("3 - Máquina calcula e planeja o ataque");
+			System.out.println("4 - Reiniciar jogo");
 			System.out.println("0 - Encerrar o jogo previamente");
 			int opcao = scanner.nextInt();
 
@@ -66,11 +68,18 @@ public class Main {
 					submarino.setAtaqueStrategy(ataquePlanejado);
 					submarino.executarAtaque(tabuleiroSingleton);
 					break;
-				case 0:
-					chances = 1;
-					break;
-			}
+				case 4:
+					tabuleiroSingleton.reiniciarJogo(mementoInicial);
+					chances = 6;
+					submarino1.posicionaNavio(tabuleiroSingleton);
+					submarino2.posicionaNavio(tabuleiroSingleton);
+					submarino3.posicionaNavio(tabuleiroSingleton);
 
+					break;
+				case 0:
+					chances = 4;
+					break;
+			};
 			chances--;
 			System.out.println("Total de torpedos: " + chances);
 			tabuleiroSingleton.imprimirTabuleiro();

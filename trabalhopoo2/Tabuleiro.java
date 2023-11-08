@@ -1,5 +1,7 @@
 package trabalhopoo2;
 
+import java.util.Arrays;
+
 public class Tabuleiro implements Observador{
 	public static int subs = 3;
 	private static Tabuleiro instance;
@@ -91,12 +93,40 @@ public class Tabuleiro implements Observador{
 		}
 	}
 
-
 	public void atualizarTabuleiro(int linha, int coluna, boolean acertou, Tabuleiro tabuleiro) {
 		if (acertou)
 			tabuleiro.getTabuleiro()[linha][coluna] = 1;
 		else
 			tabuleiro.getTabuleiro()[linha][coluna] = 2;
+	}
+
+	public Memento criarMemento() {
+		// Crie um novo Memento com uma cópia profunda do estado atual do tabuleiro
+		int[][] copiaEstado = new int[tabuleiro.length][tabuleiro[0].length];
+		for (int i = 0; i < tabuleiro.length; i++) {
+			copiaEstado[i] = Arrays.copyOf(tabuleiro[i], tabuleiro[i].length);
+		}
+		return new Memento(copiaEstado);
+	}
+
+	public void restaurar(Memento memento) {
+		// Restaure o estado do tabuleiro a partir do Memento
+		int[][] estadoRestaurado = memento.getEstadoDoTabuleiro();
+		for (int i = 0; i < tabuleiro.length; i++) {
+			for (int j = 0; j < tabuleiro[i].length; j++) {
+				tabuleiro[i][j] = estadoRestaurado[i][j];
+			}
+		}
+	}
+
+	public void limparETornarAUltimaJogada(Memento memento) {
+		restaurar(memento);
+		// Realize outras ações, se necessário, para configurar o jogo a partir do último estado
+	}
+
+	public void reiniciarJogo(Memento memento) {
+		restaurar(memento);
+		subs = 3;
 	}
 
 }

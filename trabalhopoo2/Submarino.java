@@ -15,6 +15,8 @@ public class Submarino implements Navio{
     }
 
     public void posicionaNavio(Tabuleiro tabuleiro){
+        if(i > 4)
+            i = 0;
         Random random = new Random();
         int tamanhoTabuleiro = 5;
         int linha = random.nextInt(tamanhoTabuleiro);
@@ -27,7 +29,6 @@ public class Submarino implements Navio{
     public void setAtaqueStrategy(AtaqueStrategy ataqueStrategy) {
         this.ataqueStrategy = ataqueStrategy;
     }
-
 
     public void executarAtaque(Tabuleiro tabuleiro) {
         if (ataqueStrategy != null) {
