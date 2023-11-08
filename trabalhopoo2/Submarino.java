@@ -20,7 +20,7 @@ public class Submarino implements Navio{
         Random random = new Random();
         int tamanhoTabuleiro = 5;
         int linha = random.nextInt(tamanhoTabuleiro);
-        int coluna = i; // Inicializa a posição da coluna
+        int coluna = i;
 
         tabuleiro.getTabuleiro()[linha][coluna] = 3;
         i += 2;

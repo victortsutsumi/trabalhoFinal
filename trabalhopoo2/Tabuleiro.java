@@ -7,6 +7,12 @@ public class Tabuleiro implements Observador{
 	private static Tabuleiro instance;
     private int[][] tabuleiro = new int[5][5];
 
+	public static Tabuleiro getInstance() {
+		if (instance == null) {
+			instance = new Tabuleiro();
+		}
+		return instance;
+	}
     public Tabuleiro() {
 		for(int i=0; i < tabuleiro.length; i++) {
 			for(int j=0; j < tabuleiro.length; j++) {
@@ -15,13 +21,6 @@ public class Tabuleiro implements Observador{
 		}
         System.out.println("Tabuleiro criado");
     }
-
-	public static Tabuleiro getInstance() {
-		if (instance == null) {
-			instance = new Tabuleiro();
-		}
-		return instance;
-	}
 
 	public int[][] getTabuleiro(){
 		return tabuleiro;
@@ -96,12 +95,13 @@ public class Tabuleiro implements Observador{
 	public void atualizarTabuleiro(int linha, int coluna, boolean acertou, Tabuleiro tabuleiro) {
 		if (acertou)
 			tabuleiro.getTabuleiro()[linha][coluna] = 1;
+		if(tabuleiro.getTabuleiro()[linha][coluna] == 1)
+			tabuleiro.getTabuleiro()[linha][coluna] = 1;
 		else
 			tabuleiro.getTabuleiro()[linha][coluna] = 2;
 	}
 
 	public Memento criarMemento() {
-		// Crie um novo Memento com uma cópia profunda do estado atual do tabuleiro
 		int[][] copiaEstado = new int[tabuleiro.length][tabuleiro[0].length];
 		for (int i = 0; i < tabuleiro.length; i++) {
 			copiaEstado[i] = Arrays.copyOf(tabuleiro[i], tabuleiro[i].length);
@@ -110,18 +110,12 @@ public class Tabuleiro implements Observador{
 	}
 
 	public void restaurar(Memento memento) {
-		// Restaure o estado do tabuleiro a partir do Memento
 		int[][] estadoRestaurado = memento.getEstadoDoTabuleiro();
 		for (int i = 0; i < tabuleiro.length; i++) {
 			for (int j = 0; j < tabuleiro[i].length; j++) {
 				tabuleiro[i][j] = estadoRestaurado[i][j];
 			}
 		}
-	}
-
-	public void limparETornarAUltimaJogada(Memento memento) {
-		restaurar(memento);
-		// Realize outras ações, se necessário, para configurar o jogo a partir do último estado
 	}
 
 	public void reiniciarJogo(Memento memento) {

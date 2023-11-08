@@ -30,7 +30,6 @@ public class Main {
 		System.out.println("Bem vindo a Batalha Naval!");
 		System.out.println("Você tem 5 chances de afundar os 3 submarinos espalhados no oceano!");
 		int chances = 5;
-		boolean verdade;
 
 
 		while(chances > 0){
@@ -77,7 +76,7 @@ public class Main {
 
 					break;
 				case 0:
-					chances = 4;
+					chances = 1;
 					break;
 			};
 			chances--;
